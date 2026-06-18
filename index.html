@@ -233,6 +233,28 @@
   </div>
 </section>
 
+<style>
+  .proofvids{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:16px;margin-top:36px}
+  .vcard{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;cursor:pointer;background:#000;border:1px solid var(--line)}
+  .vcard img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .2s,opacity .2s}
+  .vcard:hover img{opacity:1;transform:scale(1.04)}
+  .vcard .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  .vcard .play b{width:54px;height:54px;border-radius:50%;background:rgba(255,206,74,.94);display:flex;align-items:center;justify-content:center;color:#1a1405;font-size:20px;box-shadow:0 8px 22px rgba(0,0,0,.45)}
+  .vcard iframe{width:100%;height:100%;border:0;display:block}
+  .vcredit{margin-top:18px;font-size:13px;color:var(--soft)}
+  .vcredit a{color:var(--gold)}
+</style>
+<section class="blk proofvids">
+  <div class="wrap">
+    <div class="eyebrow">O outro lado da conta</div>
+    <h2 class="title">Funcionário humano vem com a Justiça do Trabalho junto.</h2>
+    <p class="lead">Casos reais que uma advogada trabalhista conta. Agora lembra da Zél: trabalha 24/7, não tira férias, não pede 13º — e <b style="color:var(--gold)">nunca, jamais, vai te processar.</b></p>
+    <div class="vgrid" id="vgrid"></div>
+    <p class="vcredit">Vídeos do canal <a href="https://www.youtube.com/@Anot%C3%ADcia%C3%A9" target="_blank" rel="noopener">@Anotíciaé</a> — casos reais da Justiça do Trabalho.</p>
+  </div>
+</section>
+
 <section class="blk faq">
   <div class="wrap">
     <div class="eyebrow">Perguntas frequentes</div>
@@ -256,6 +278,22 @@
 <footer>
   <div class="wrap">Zél-IA · funcionária digital de vendas · feito por um Plat 6 em 7 · © 2026</div>
 </footer>
+
+<script>
+  // Muro de vídeos (YouTube Shorts) — miniatura leve; só carrega o player no clique.
+  // Pra adicionar mais: é só botar o ID do short nesta lista.
+  const PROOF_SHORTS = ['OGVD0SJctWA','kpj2SpTfR58','NJ9aQ5Qbyww','PtCLXQCYYg0'];
+  const grid = document.getElementById('vgrid');
+  if (grid) PROOF_SHORTS.forEach(id => {
+    const c = document.createElement('div');
+    c.className = 'vcard';
+    c.innerHTML = '<img loading="lazy" src="https://i.ytimg.com/vi/' + id + '/hqdefault.jpg" alt="caso da Justiça do Trabalho"><div class="play"><b>&#9654;</b></div>';
+    c.addEventListener('click', () => {
+      c.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+    });
+    grid.appendChild(c);
+  });
+</script>
 
 </body>
 </html>
